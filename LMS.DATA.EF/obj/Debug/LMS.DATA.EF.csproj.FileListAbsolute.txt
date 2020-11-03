@@ -1,0 +1,10 @@
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\LMS.DATA.EF.dll.config
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\LMS.DATA.EF.dll
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\LMS.DATA.EF.pdb
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\EntityFramework.dll
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\EntityFramework.xml
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\obj\Debug\LMS.DATA.EF.csprojResolveAssemblyReference.cache
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\obj\Debug\LMS.DATA.EF.dll
+C:\Users\Student\Documents\FinalProject\FinalProjectLMS\src\LMS.DATA.EF\obj\Debug\LMS.DATA.EF.pdb
