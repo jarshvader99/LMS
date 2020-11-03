@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LMS.DATA.EF.LessonView>
+
+@{
+    ViewBag.Title = "Completed Lessons";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var lessonList = ctx.Lessons;
+
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+        <div class="wow slideInDown">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date Viewed</th>
+                        <th>Course Name</th>
+                        <th>Lesson Title</th>
+                        <th>Full Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr class="text-left">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateViewed)
+                            </td>
+                            <td>
+                                @lessonList.Where(x => x.LessonID == item.LessonID).Single().Cours.CourseName
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserDetail.FirstName) @Html.DisplayFor(modelItem => item.UserDetail.LastName)
+                            </td>
+                            <td>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}

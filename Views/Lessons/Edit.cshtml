@@ -1,0 +1,127 @@
+﻿@model LMS.DATA.EF.Lesson
+
+@{
+    ViewBag.Title = "Edit Lesson";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+
+        @using (Html.BeginForm("Edit", "Lessons", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.LessonID)
+            @Html.HiddenFor(model => model.LessonImage)
+            @Html.HiddenFor(model => model.PdfFileName)
+            Session["currentImage"] = Model.LessonImage;
+            Session["currentPDF"] = Model.PdfFileName;
+            <div class="form-horizontal">
+                <hr />
+                    <div class="form-group row">
+                        @*@Html.LabelFor(model => model.PdfFileName, htmlAttributes: new { @class = "control-label" })*@
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.PdfFileName, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="PDFFile" } })*@
+                            <label>Existing Image: </label><br />
+                            <img src="~/Content/LessonImage/@Model.LessonImage" alt="@Model.LessonImage" style="width:15%;" />
+                            <br />
+
+                            <span id="courseLabel">Lesson Image:</span>
+                            <input type="file" name="LessonImage" class="centerInput" />
+                            @Html.ValidationMessageFor(model => model.LessonImage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.LessonTitle, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.LessonTitle, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="Lesson Title", maxLength = 200, minLength=10 } })
+                        @Html.ValidationMessageFor(model => model.LessonTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.CourseID, "CourseID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.DropDownList("CourseID", null, htmlAttributes: new { @class = "form-control centerInput" })
+                        @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.VideoURL, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.VideoURL, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="VideoUrl" } })
+                        @Html.ValidationMessageFor(model => model.VideoURL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.PdfFileName, htmlAttributes: new { @class = "control-label" })*@
+                    <div class="col-md-12">
+                        @*@Html.EditorFor(model => model.PdfFileName, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="PDFFile" } })*@
+                        <span id="courseLabel">Existing PDF: </span><br />
+                        <span id=""><img src="~/Content/LessonPDFs/@Model.PdfFileName" alt="default" style="width:15%;" /></span>
+                        <br />
+
+
+                        <span id="courseLabel">Upload PDF:</span>
+                        <input type="file" name="pdf" class="centerInput" />
+                        @Html.ValidationMessageFor(model => model.PdfFileName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.Introduction, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Introduction, new { @class = "form-control centerInput", @style="resize:none;", rows=10, placeholder="Limited to 300 characters", id="field", maxLength=300 })
+                        <p>
+                            You have <span id="charNum">300</span> characters remaining.
+                        </p>
+                        @Html.ValidationMessageFor(model => model.Introduction, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+      
+    </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $("#field").keyup(function(){
+    el = $(this);
+    if(el.val().length >= 300){
+    el.val( el.val().substr(0, 300) );
+    } else {
+    $("#charNum").text(300-el.val().length);
+    }
+    });
+    </script>
+}

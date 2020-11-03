@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Jedi Knight School | Home";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var totalStudents = ctx.UserDetails.Count();
+
+    var coursesViewed = ctx.CourseCompletions.Count();
+    var lessonsViewed = ctx.LessonViews.Count();
+}
+
+
+<section id="home" class="video-section js-height-full">
+    <div class="overlay"></div>
+    <div class="home-text-wrapper relative container">
+        <div class="home-message">
+            <p class="wow fadeInDownBig">
+                <img src="~/Content/images/coollogo_com-4211582.png" style="width:100%;" />
+            </p>
+            <blockquote class="blockquote wow fadeIn" id="introQuote">
+                <p class="mb-0" id="innerQuote">"Training to become a Jedi is not an easy challenge, and even if you succeed, it's a hard life."</p>
+                
+                <footer class="blockquote-footer">Jedi Master <cite title="Source Title">Qui-Gon Jinn</cite></footer>
+                <p class="text-center" id="pd"><a href="~/Content/joshuaharrisondocumentation.pdf" target="_blank">Project Documentation</a></p>
+            </blockquote>
+            
+            @*<small>"Training to become a Jedi is not an easy challenge, and even if you succeed, it's a hard life."</small>
+                <small>Jedi Master Qui-Gon Jinn</small>*@
+            <div class="btn-wrapper">
+                <div class="text-center">
+                    <a href="#mainSlide" class="btn btn-primary wow slideInLeft" id="readMore">Read More</a>@if (User.Identity.IsAuthenticated) { }
+                    else
+                    {
+                        @:&nbsp; &nbsp; &nbsp;<a href="@Url.Action("Register", "Account")" class="btn btn-default wow slideInRight">Enroll Now</a>
+                    }
+                </div>
+            </div><!-- end row -->
+        </div>
+    </div>
+    <div class="slider-bottom">
+        <span>Explore <i class="fa fa-angle-down"></i></span>
+    </div>
+</section>
+<section class="section" id="mainSlide">
+    <section class="section db">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">@totalStudents</h4>
+                        <h3><i class="flaticon-black-graduation-cap-tool-of-university-student-for-head"></i> Happy Students</h3>
+                    </div><!-- stat-count -->
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">@coursesViewed</h4>
+                        <h3><i class="flaticon-online-course"></i> Courses Finished</h3>
+                    </div><!-- stat-count -->
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">@lessonsViewed</h4>
+                        <h3><i class="flaticon-coffee-cup"></i> Lessons Viewed</h3>
+                    </div><!-- stat-count -->
+                </div><!-- end col -->
+                
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+</section>
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+﻿@model LMS.DATA.EF.Lesson
+@{
+    ViewBag.Title = "Lesson Details";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 shop-media">
+                <div class="col-md-12">
+                    <div class="shop-desc text-center">
+                        <h3>@Html.DisplayFor(model => model.LessonTitle)</h3>
+                        <small>Course: @Model.Cours.CourseName</small>
+                        <p class="text-center" style="padding-top:3em;">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.LessonID }, new { @class = "btn btn-default" })
+                            }
+                        </p>
+                    </div><!-- end desc -->
+                </div><!-- end col -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="image-wrap entry text-center">
+                            <p class="crsBtnBump">
+                                <a href="@Url.Action("Details", "Cours", new { id = Model.CourseID})" class="btn" id="readMore">Cancel</a>
+                            </p>
+                            <div id="lessonPic">
+                                @if (Model.LessonImage == null || Model.LessonImage == "noimage.jpg")
+                                {
+
+                                }
+                                else
+                                {
+                                    <img src="~/Content/LessonImage/@Model.LessonImage" alt="@Model.LessonTitle" class="img-responsive">
+                                }
+                            </div>
+                            @{
+                                if (Model.VideoURL != null)
+                                {
+                                    string link = Model.VideoURL.Substring(Model.VideoURL.LastIndexOf("="));
+                                    char[] removeWhitespace = { ' ', '=' };
+                                    string result = link.Trim(removeWhitespace);
+                                    <div class="videoP">
+                                        <iframe class="vid" src="https://www.youtube.com/embed/@result" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                        </div>
+                    </div><!-- end image-wrap -->
+                </div>
+            </div><!-- end row -->
+        </div><!-- end col -->
+
+    </div><!-- end row -->
+    <hr class="invis">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="shop-extra">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#intro">Introduction</a></li>
+                    <li><a data-toggle="tab" href="#home">Description</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Lesson Resources</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="intro" class="tab-pane fade in active">
+                        <p>@Html.DisplayFor(model => model.Introduction)</p>
+                    </div>
+                    <div id="home" class="tab-pane fade">
+                        <p>@Model.Cours.Description</p>
+                    </div>
+                    <div id="menu1" class="tab-pane fade text-center">
+                        <div class="text-center">
+                            @if (Model.PdfFileName != "default.pdf")
+                            {
+                                <object data="~/Content/LessonPDFs/@Model.PdfFileName" type="application/pdf" width="100%" height="650">
+                                    <p>Oops! You don't support PDFs!</p>
+                                    <p><a href="~/Content/LessonPDFs/@Model.PdfFileName">Download Instead</a></p>
+                                </object>
+                            }
+                            else
+                            {
+                                <p class="text-left">There are no additional resources</p>
+                            }
+                        </div>
+                    </div>
+                </div><!-- end shop-extra -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end boxed -->
+</section>
+
+

@@ -1,0 +1,78 @@
+﻿@model LMS.DATA.EF.Lesson
+
+@{
+    ViewBag.Title = "Delete Lesson";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+        <h3>Are you sure you want to <span class="text-danger">DELETE</span> this?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.LessonTitle)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LessonTitle)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Introduction)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Introduction)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VideoURL)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VideoURL)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PdfFileName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PdfFileName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IsActive)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cours.CourseName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Cours.CourseName)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

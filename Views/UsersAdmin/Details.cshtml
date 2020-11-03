@@ -1,0 +1,48 @@
+﻿@model LMS.UI.MVC.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+        <div style="padding-bottom:3em;">
+                <p>
+                    <strong>@Html.DisplayNameFor(model => model.UserName): </strong>
+               
+                    @Html.DisplayFor(model => model.UserName)
+                </p>
+
+            
+        </div>
+        <h4>List of roles for this user</h4>
+        @if (ViewBag.RoleNames.Count == 0)
+        {
+            <hr />
+            <p>No roles found for this user.</p>
+        }
+
+        <table class="table">
+
+            @foreach (var item in ViewBag.RoleNames)
+            {
+                <tr>
+                    <td>
+                        @item
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="btn-wrapper">
+            <div class="text-center">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+

@@ -1,0 +1,22 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+<script type="text/javascript">
+    document.getElementById('audio').play();
+</script>
+
+<audio id="audio" autoplay><source src="~/Content/audio/swvader02.mp3"></audio>
+
+
+<div class="mainContent">
+    <div class="subContent">
+        <div class="wow slideInUp darth">
+            <p class="text-center"><img src="~/Content/images/darth800.jpg" class="err"/></p>
+            <h2 class="text-error">Error!</h2>
+            <h3 class="text-error">You must remove all records associated with this before you can successfully remove it.</h3>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,101 @@
+﻿@model LMS.DATA.EF.Cours
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Course Details";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var lesson = ctx.Lessons.Where(x => x.CourseID == Model.CourseID);
+    var user = User.Identity.GetUserId();
+    var titleViewed = ctx.LessonViews.Where(x => x.UserID == user);
+    var notViewed = lesson.Where(x => !titleViewed.Any(y => y.LessonID == x.LessonID));
+    var viewed = lesson.Where(x => titleViewed.Any(y => y.LessonID == x.LessonID));
+}
+<section class="section db p120">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tagline-message text-center">
+                    <h3>@Html.DisplayFor(model => model.CourseName) Details</h3>
+
+                </div>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end section -->
+<section class="section gb nopadtop">
+    <div class="container">
+        <div class="row">
+            @if (User.IsInRole("Employee"))
+            {
+                <div class="col-md-3">
+                    <div class="box m30 wow slideInLeft">
+                        <i class="flaticon-computer-tool-for-education" id="icons"></i>
+                        <h4>Course Lessons</h4>
+                        <div>
+                            <div>
+                            </div>
+                            @foreach (var views in viewed)
+                            {
+                                <p>
+                                    <a href="~/Lessons/Details/@views.LessonID">@views.LessonTitle</a><i class="fa fa-check"></i>
+                                </p>
+                            }
+                            @foreach (var items in notViewed)
+                            {
+                                <p>
+                                    <a href="~/Lessons/Details/@items.LessonID">@items.LessonTitle</a>
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div><!-- end col -->
+            }
+            else
+            {
+                <div class="col-md-3">
+                    <div class="box m30 wow slideInLeft">
+                        <i class="flaticon-computer-tool-for-education" id="icons"></i>
+                        <h4>Course Lessons</h4>
+                        <div>
+                            <p>Lesson Titles will display here for employees.</p>
+                        </div>
+                    </div>
+                </div><!-- end col -->
+            }
+            <div class="col-md-6">
+                <div class="box m30 wow slideInUp">
+                    <i class="flaticon-monitor-tablet-and-smartohone" id="icons"></i>
+                    <h4>Course Description</h4>
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                </div>
+            </div><!-- end col -->
+            <div class="col-md-3">
+                <div class="box m30 wow slideInRight">
+                    <i class="flaticon-download-business-statistics-symbol-of-a-graphic" id="icons"></i>
+                    <h4>Course Status</h4>
+                    @if (Model.IsActive == true)
+                    {
+                        <p>Active: @Html.DisplayFor(model => model.IsActive)</p>
+                    }
+                    else
+                    {
+                        <p>Inactive: @Html.DisplayFor(model => model.IsActive)</p>
+                    }
+                </div>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+    <div class="btn-wrapper">
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }, new { @class = "btn btn-default" })
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+        }
+        else
+        {
+            @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</section>

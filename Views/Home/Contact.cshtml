@@ -1,0 +1,79 @@
+﻿@model LMS.UI.MVC.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="contactFormWrap">
+                <h2>Contact Us</h2>
+                <h5>If you have any questions regarding Jedi Knight School, or just want to chat please fill out the form below and someone will get back with you as soon as possible.</h5>
+                <hr />
+                <div class="wow fadeIn">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control centerInput", @placeholder = "First Name", @name = "fname" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control centerInput", @placeholder = "Last Name", @name = "lname" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control centerInput", @placeholder = "Email", @name = "email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control centerInput", id = "cForm", @placeholder = "Subject", @name = "subject" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12 col-md-12">
+                        @Html.TextAreaFor(model => model.Message, new { @class = "form-control centerInput", @placeholder = "Message", @rows = 8, @id = "field", @name = "message", @style = "resize:none;", maxLength = 5000 })
+                        <p>
+                            You have <span id="charNum">5000</span> characters remaining.
+                        </p>
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12 col-md-12">
+                        <input type="submit" value="Send Message" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script>
+        $("#field").keyup(function () {
+            el = $(this);
+            if (el.val().length >= 5000) {
+                el.val(el.val().substr(0, 5000));
+            } else {
+                $("#charNum").text(5000 - el.val().length);
+            }
+        });
+    </script>
+}

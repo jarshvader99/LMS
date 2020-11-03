@@ -1,0 +1,60 @@
+﻿@model LMS.DATA.EF.CourseCompletion
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Completed courses for " + Model.UserDetail.LastName + "," + " " + Model.UserDetail.FirstName;
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var user = User.Identity.GetUserId();
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+        <div id="deetWrap">
+            @foreach (var item in ctx.CourseCompletions.Where(x => x.UserID == Model.UserID))
+            {
+
+
+                <div class="deetBord">
+                    
+
+                    <div class="row">
+                        <p class="pLeft">
+                            <strong>@Html.DisplayNameFor(model => model.DateCompleted): </strong>
+                        </p>
+                        <p class="pRight">
+                            @*@Html.DisplayFor(model => model.DateCompleted)*@
+                            @item.DateCompleted
+                        </p>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="row">
+                        <p class="pLeft">
+                            <strong>@Html.DisplayNameFor(model => model.Cours.CourseName): </strong>
+                        </p>
+                        <p class="pRight">
+                            @*@Html.DisplayFor(model => model.Cours.CourseName)*@
+                            @item.Cours.CourseName
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionID })
+                            </p>
+                        }
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+        <p id="cancelBtn">
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

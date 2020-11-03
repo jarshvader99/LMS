@@ -1,0 +1,129 @@
+﻿@model IEnumerable<LMS.DATA.EF.Cours>
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Courses";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var user = User.Identity.GetUserId();
+    var name = User.Identity.GetUserName();
+    var courseCompleteCount = ctx.CourseCompletions.Where(x => x.UserID == user).Count();
+}
+<section class="section lb p120">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tagline-message page-title text-center">
+                    <h3>@ViewBag.Title</h3>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <p class="addBtn">
+                            @Html.ActionLink("Add New Course", "Create", null, new { @class = "btn btn-default" })
+                        </p>
+                    }
+                </div>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end section -->
+<section class="section gb">
+    <div class="container">
+        <div id="owl-01" class="owl-carousel owl-theme owl-theme-01 wow fadeInLeftBig">
+            @foreach (var item in Model)
+            {
+                var courseCount = item.Lessons.Where(x => x.CourseID == item.CourseID).Count();
+                var userLessonComplete = ctx.LessonViews.Where(x => x.UserID == user && x.Lesson.CourseID == item.CourseID).Count();
+                <div class="caro-item">
+                    <div class="course-box">
+                        <div class="image-wrap entry">
+                            @if (item.CourseImage == null || item.CourseImage == "noimage.jpg")
+                            {
+                                <img src="~/Content/upload/course_01.jpg" alt="" class="img-responsive">
+                            }
+                            else
+                            {
+                                <img src="~/Content/CourseImages/@item.CourseImage" alt="@item.CourseName" class="img-responsive" />
+                            }
+                        </div><!-- end image-wrap -->
+                        <div class="course-details">
+                            <h4>@Html.ActionLink(item.CourseName, "Details", new { id = item.CourseID })</h4>
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                            <p style="margin-top:1em">
+                                <i class="fa fa-book"></i>
+                                @if (courseCount > 1)
+                                {
+                                    @courseCount @:Lessons Required for Completion
+                                        }
+                                else
+                                {
+                                    @courseCount @:Lesson Required for Completion
+                                        }
+                            </p>
+                            <p>
+                                @{
+                                    if (User.IsInRole("Employee"))
+                                    {
+                                        var totalUserLesson = courseCount - userLessonComplete;
+                                        if (totalUserLesson > 1)
+                                        {
+                                            <i class="fa fa-tasks"></i>
+                                            @totalUserLesson @:Lessons Remaining
+                                            }
+                    else if (totalUserLesson == 1)
+                    {
+                                            <i class="fa fa-tasks"></i>
+                                            @totalUserLesson @:Lesson Remaining
+                                            }
+                    else
+                    {
+                                            <i class="fa fa-check"></i>
+                                            @:You have completed all lesson requirements for this course.
+                                            }
+                                    }
+                                }
+                            </p>
+                        </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="course-footer clearfix">
+                                <div class="pull-left">
+                                    <ul class="list-inline">
+                                        <li>@Html.ActionLink("Edit", "Edit", new { id = item.CourseID })</li>
+                                    </ul>
+                                </div><!-- end left -->
+                                <div class="pull-right">
+                                    <ul class="list-inline">
+                                        <li style="color:#ff0000 !important">@Html.ActionLink("Remove", "Delete", new { id = item.CourseID })</li>
+                                    </ul>
+                                </div><!-- end left -->
+                            </div><!-- end footer -->
+                        }
+                    </div>
+                </div>
+                                    }
+        </div>
+        <div class="section-title text-center" id="prog">
+            @if (User.IsInRole("Employee"))
+            {
+
+                @courseCompleteCount @:/ @ctx.Courses.Count()<br />
+                    @:Courses Completed
+
+                decimal math = ((decimal)courseCompleteCount / (decimal)ctx.Courses.Count()) * 100;
+
+                var noDeci = Math.Round(math, 0);
+
+                <div class="progress" id="bar">
+                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70"
+                         aria-valuemin="0" aria-valuemax="100" style="width:@noDeci%">
+                        @noDeci% Complete
+                    </div>
+                </div>
+            }
+        </div><!-- end title -->
+    </div>
+</section>
+
+
+
+@section scripts{
+
+}

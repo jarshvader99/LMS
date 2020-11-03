@@ -1,0 +1,34 @@
+﻿@model LMS.UI.MVC.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+        <h3>Are you sure you want to <span class="text-danger">DELETE</span> this User?</h3>
+        <div>
+            <hr />
+            <div>
+                <p>
+                    <strong>@Html.DisplayNameFor(model => model.UserName): </strong>
+                    @Html.DisplayFor(model => model.UserName)
+                </p>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Delete" class="btn btn-default" /> 
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    </div>

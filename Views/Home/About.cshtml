@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "About";
+}
+<link href="~/Content/css/textCrawl.css" rel="stylesheet" />
+
+@*<audio autoplay loop controls id="playAudio">
+    <source src="~/Content/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg" />
+</audio>*@
+
+
+<div id="wrapper">
+    <div id="musicPlayer">
+        <a href="#" onclick="play();"><i class="fa fa-play"></i></a>
+        <a href="#" onclick="pause();"><i class="fa fa-pause"></i></a>
+        @*<input type="button" value="Play" onclick="play()" class="btn btn-default">
+        <input type="button" value="Pause" onclick="pause()" class="btn" id="readMore">*@
+        <audio id="audio" src="~/Content/audio/trimmedTune.mp3"></audio>
+    </div>
+    <section class="intro">
+        A long time ago, in a galaxy far,<br /> far away...
+    </section>
+
+    <section class="logo">
+        <img src="~/Content/images/coollogo_com-4211582.png" />
+    </section>
+
+    <div id="wrap">
+        <div id="content">
+            <p id="title">Version I</p>
+            <p id="subtitle">Jedi Knight School</p>
+            <br />
+            <p class="para">
+                The FIRST ORDER reigns. Having decimated the peaceful Republic, Supreme Leader Snoke now deploys his merciless legions to seize military control of the galaxy.
+            </p>
+            <p class="para">
+                Only General Leia Organa's band of RESISTANCE fighters stand against the rising tyranny, certain that Jedi Master Luke Skywalker will return and restore a spark of hope to the fight.
+            </p>
+            <p class="para">
+                But the Resistance has been exposed. As the First Order speeds toward the rebel base, the brave heroes mount a desperate escape....
+            </p><br />
+            <p class="para">
+                If you can read this, you don't need glasses...
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/js/textCrawl.js"></script>
+<script type="text/javascript">
+    var audios = document.getElementById("audio");
+    function play() {
+        audios.play();
+    }
+    function pause() {
+        audios.pause();
+    }
+    function unMute() {
+        audios.pause = false;
+    }
+
+
+</script>

@@ -1,0 +1,100 @@
+﻿@model LMS.DATA.EF.Cours
+
+@{
+    ViewBag.Title = "Edit Course Details";
+}
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+
+        @using (Html.BeginForm("Edit", "Cours", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.CourseID)
+            @Html.HiddenFor(model => model.CourseImage)
+            Session["currentImage"] = Model.CourseImage;
+            <div class="form-horizontal">
+            
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+               
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.CourseName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="Course Name" } })
+                        @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control centerInput", placeholder="Description", style="resize:none", rows=10, id="field", maxLength=500 })
+                        <p>
+                            You have <span id="charNum">500</span> characters remaining.
+                        </p>
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.PdfFileName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @*@Html.EditorFor(model => model.PdfFileName, new { htmlAttributes = new { @class = "form-control centerInput", placeholder="PDFFile" } })*@
+                        <label>Existing Image: </label><br />
+                        <img src="~/Content/CourseImages/@Model.CourseImage" alt="" style="width:15%;" />
+                        <br />
+
+                        <span id="courseLabel">Course Image:</span>
+                        <input type="file" name="courseImage" class="centerInput" />
+                        @Html.ValidationMessageFor(model => model.CourseImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            </div>
+        }
+
+       
+            
+        
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    var maxLength = 500;
+    $('#field').keyup(function () {
+        var length = $(this).val().length;
+        var length = maxLength - length;
+        $('#charNum').text(length);
+    });
+    //$("#field").keyup(function(){
+    //el = $(this);
+    //if(el.val().length >= 500){
+    //el.val( el.val().substr(0, 500) );
+    //} else {
+    //$("#charNum").text(500-el.val().length);
+    //}
+    //});
+</script>
+}

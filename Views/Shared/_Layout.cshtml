@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html class="no-js " lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Meta -->
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Site Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+   
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+
+    <!-- Custom & Default Styles -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/carousel.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link href="~/Content/css/CustomStyles.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">*@
+    <link href="~/Content/css/tables.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="~/Content/images/blue.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/images/jediknightlogo.png" id="brand" /></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home", null, new { @id = "about" })</li>
+                        
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Courses", "Index", "Cours")</li>
+                            <li>@Html.ActionLink("Lessons", "Index", "Lessons")</li>
+                        }
+                        
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Course Completions", "Index", "CourseCompletions")</li>
+                            <li>@Html.ActionLink("Lessons Viewed", "Index", "LessonViews")</li>
+                            <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                            <li>@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+                        }
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <li>@Html.ActionLink("Course Completions", "Index", "CourseCompletions")</li>
+                            <li>@Html.ActionLink("Lessons Viewed", "Index", "LessonViews")</li>
+                        }
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+        @RenderBody()
+
+    </div><!--end wrapper -->
+    <!-- jQuery Files -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script defer src="~/Content/js/carousel.js"></script>
+    <script src="~/Content/js/animate.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+
+    <!-- VIDEO BG PLUGINS -->
+    <script src="~/Content/js/videobg.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

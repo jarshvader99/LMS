@@ -1,0 +1,54 @@
+﻿@model LMS.DATA.EF.LessonView
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>Delete</h2>
+
+        <h3>Are you sure you want to <span class="text-danger">DELETE</span> this?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateViewed)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateViewed)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Lesson.LessonTitle)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserDetail.FirstName)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

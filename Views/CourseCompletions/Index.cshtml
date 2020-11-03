@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LMS.DATA.EF.CourseCompletion>
+@{
+    ViewBag.Title = "Courses Completed";
+    LMS.DATA.EF.LMSEntities ctx = new LMS.DATA.EF.LMSEntities();
+    var user = ctx.UserDetails;
+    var totCourse = ctx.Courses.Count();
+
+}
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+        @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+        <div class="wow slideInDown">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th class="text-center">
+                            # Courses Completed
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td class="text-left">
+                                @Html.ActionLink(item.UserDetail.FirstName + " " + item.UserDetail.LastName, "Details", new { id = item.CourseCompletionID })
+                            </td>
+                            <td class="text-center">
+                                @user.Where(x => x.UserID == item.UserID).Single().CourseCompletions.Count()/@totCourse
+                            </td>
+
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionID }) |
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionID })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}

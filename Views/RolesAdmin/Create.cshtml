@@ -1,0 +1,45 @@
+﻿@model LMS.UI.MVC.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Add New User Role";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+            
+                @Html.ValidationSummary(true)
+
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control centerInput", placeholder="Role Name" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="btn-wrapper" style="padding-top:3em;">
+                    <div class="text-center">
+                        <input type="submit" value="Add Role" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            </div>
+        }
+
+      
+            
+      
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

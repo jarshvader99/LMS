@@ -1,0 +1,36 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "Delete Role";
+}
+
+<div class="mainContent">
+    <div class="subContent">
+        <h2>@ViewBag.Title</h2>
+
+        <h3>Are you sure you want to <span id="delete" class="text-danger">DELETE</span> this Role? </h3>
+        <p>Deleting this Role will remove all users from this role. It will not delete the users.</p>
+        <div>
+
+            <hr />
+            <div class="roleWrap">
+                <p>
+                    <strong>@Html.DisplayNameFor(model => model.Name): </strong>
+
+                    @Html.DisplayFor(model => model.Name)
+                </p>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn", id = "readMore" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
