@@ -1,0 +1,244 @@
+﻿.mainContent {
+    width: 95%;
+    height: 100%;
+    background-color: #000;
+    margin: auto;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    opacity: 0.9;
+    padding-bottom: 5em;
+}
+
+    .mainContent h2 {
+        color: #ffd700;
+        text-align: center;
+        text-decoration: underline;
+        padding-bottom: 2em;
+    }
+
+.subContent input[type="text"], textarea {
+    background-color: #000;
+    border-color: #ffd700;
+}
+
+.subContent input[type="password"], textarea {
+    background-color: #000;
+    border-color: #ffd700;
+}
+
+    .subContent input[type="text"], textarea:focus {
+        background-color: #000;
+        border-color: #ffd700;
+        color: #808080;
+    }
+
+    .subContent input[type="password"], textarea:focus {
+        background-color: #000;
+        border-color: #ffd700;
+        color: #808080;
+    }
+
+.subContent {
+    width: 65%;
+    margin: auto;
+    text-align: center;
+}
+
+    .subContent h1, h2, h3, h4, h5, h6 {
+        color: #ffd700;
+        padding-bottom: .5em;
+    }
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: #ffd700 !important;
+}
+
+.centerInput {
+    margin: auto;
+}
+
+#btn-wrap {
+    margin-top: 60px;
+}
+
+.btn-wrapper {
+    padding-top: 3em;
+    text-align: center;
+}
+
+.addBtn {
+    padding-bottom: 3em;
+}
+
+.footerLeft {
+    float: left;
+}
+/******************scroll bar******************/
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ffd700;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #808080;
+    }
+
+.contactFormWrap {
+    margin-top: 3em;
+}
+
+.cForm {
+    margin-top: 6em;
+}
+
+#lessonIntro {
+    color: #808080;
+}
+
+#brand {
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.videoP {
+    /*width:560px;
+    height: 315px;*/
+}
+
+.progress {
+  margin: 10px;
+  width: 700px;
+}
+
+#prog{
+    color: rgb(75,213,238);
+    margin-top:3em;
+}
+
+.crsBtnBump{
+    margin-bottom: 3em;
+
+}
+
+.botBtn{
+    position:relative;
+}
+
+#musicPlayer{
+    color: #ffd700;
+    margin: auto;
+    text-align: center;
+    padding-top:3em;
+}
+
+#pass small{
+    color: #82b440;
+}
+
+#lessonPic{
+    width: 25%;
+    margin: auto;
+    margin-bottom: 3em;
+}
+
+#courseLabel{
+    text-align: left;
+    padding-right: 175px;
+}
+
+.vid{
+    width:85%;
+    height:415px;
+}
+
+#bar{
+    margin: auto;
+    width: 85%;
+}
+
+.progress-bar{
+    background-color: #ffd700 !important;
+    color: #000 !important;
+}
+
+#icons{
+    font-size: 46px;
+}
+
+.left{
+    float: left;
+    margin-right: 1em;
+}
+
+.right{
+    text-align: left;
+    margin-left: 1em;
+}
+
+#deetWrap{
+    margin: auto;
+    width: 60%;
+}
+
+.deetBord{
+    border: 1px solid #ffd700;
+    padding: 1em;
+}
+
+#cancelBtn{
+    margin-top: 3em;
+}
+
+#labelPush{
+    margin-left: 10%;
+}
+
+#pd{
+    font-size: 1em;
+    font-style: normal;
+}
+
+.err{
+    width: 50%;
+}
+
+#error{
+    margin: auto;
+    width: 100%;
+    background-image:url(~/Content/images/darth800.jpg) !important;
+    background-repeat: no-repeat;
+    background-position: center; 
+    position: relative;
+}
+
+.darth{
+    margin-top: 3em;
+}
+
+#audio{
+    display: none;
+}
