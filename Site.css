@@ -1,0 +1,91 @@
+﻿body {
+    padding-top: 50px;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#topNav {
+    background-color: #000;
+}
+#topNav ul li a {
+    color: #ffd700;
+    text-transform:uppercase;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+#topNav ul li a:hover {
+    color: rgb(75,213,238);
+}
+
+#navBrand{
+    color: #ffd700;
+    text-transform:uppercase;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#navBrand:hover {
+    color: #808080;
+}
+
+#introQuote{
+    background-color:#000;
+    
+    border: 1px solid #ffd700;
+}
+
+#innerQuote {
+    font-size: 1em;
+    color: #ffd700;
+}
+#readMore{
+    background-color: #ffd700;
+    color: #000 !important;
+    border-color: #ffd700 !important;
+    
+}
+#readMore:hover {
+    background-color: #000 !important;
+    
+    color: #ffd700 !important;
+}
+#mainSlide{
+
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+    background-color: #000;
+    color: #ffd700;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
